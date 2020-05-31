@@ -6,7 +6,7 @@ let sim = {
 
 let finishedCustomer = []
 let totalCustomerInQueue = []
-let amountOfQueue = 3
+let amountOfQueue = 2
 let amountOfServer = 3
 
 for (let i = 0; i < amountOfQueue; i++) {
@@ -99,6 +99,7 @@ while (iter < simTime) {
                 sim.service[i].temp--
 
                 if (sim.service[i].temp == 0) {
+                    sim.service[i].customer.serviceTime = sim.service[i].weight
                     sim.service[i].customer.finishedAt = iter
                     sim.service[i].customer.finishedFromServer = i
                     sim.service[i].customer.respondTime = sim.service[i].customer.waitingTime + sim.service[i].weight
@@ -154,6 +155,7 @@ while (iter < simTime) {
                     sim.service[i].temp--
 
                     if (sim.service[i].temp == 0) {
+                        sim.service[i].customer.serviceTime = sim.service[i].weight
                         sim.service[i].customer.finishedAt = iter
                         sim.service[i].customer.finishedFromServer = i
                         sim.service[i].customer.respondTime = sim.service[i].customer.waitingTime + sim.service[i].weight
