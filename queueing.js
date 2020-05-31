@@ -1,3 +1,9 @@
+// Author: 
+// 1. Muhammad Mukhtar Kurniawan (17/409443/PA/17750)
+// 2. Faisal Ramadhan (17/409431/PA/17738)
+// 3. Yusfi Adilaksa (17/412657/PA/17976)
+
+
 // Initialize Simulation, to hold queue and service in server
 let sim = {
     queue: [],
@@ -16,6 +22,12 @@ for (let i = 0; i < amountOfQueue; i++) {
 
 // Generate service in server
 for (let i = 0; i < 3; i++) {
+    // generate random in service is that much so that 
+    // server is not serving too fast so customers in queue can
+    // be served not only by 1 server
+
+    // Of course this can be arranged, 
+    // default set only for best visualization
     var randService = Math.floor(Math.random() * 100) + 50;
     sim.service[i] = {
         is_handled: true,
@@ -23,20 +35,6 @@ for (let i = 0; i < 3; i++) {
         temp: randService
     }
 }
-
-// sim.service = [{
-//     is_handled: true,
-//     weight: 80,
-//     temp: 80
-// },{
-//     is_handled: true,
-//     weight: 70,
-//     temp: 70
-// },{
-//     is_handled: true,
-//     weight: 40,
-//     temp: 40
-// }]
 
 // Iteration is based on time
 let simTime = 2000
@@ -194,6 +192,13 @@ for (let i = 0; i < totalCustomerInQueue.length; i++) {
 
 // Generate Customer 
 function generateCustomer() {
+    // generate random customers just that much so that 
+    // customers come quickly and spread to all queues, 
+    // customer not entered only on server 1 or early because of 
+    // the long time to come and the previous customer has finished serving.
+
+    // Of course this can be arranged, 
+    // default set only for best visualization
     var randArrive = Math.floor(Math.random() * 30) + 5;
 
     let customer = {
