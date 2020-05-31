@@ -12,7 +12,7 @@ let sim = {
 
 let finishedCustomer = []
 let totalCustomerInQueue = []
-let amountOfQueue = 2
+let amountOfQueue = 3
 let amountOfServer = 3
 
 for (let i = 0; i < amountOfQueue; i++) {
@@ -44,6 +44,7 @@ let indexCustomer = 0
 let customer = generateCustomer()
 
 while (iter < simTime) {
+    if (customer.nextArrival > (simTime-iter)) break
 
     // Put customers to queue
     if (customer.nextArrival == nextArrival) {
@@ -67,7 +68,7 @@ while (iter < simTime) {
         customer.arriveAt = iter
         sim.queue[minQueue.index].push(customer)
         indexCustomer = customer.user + 1
-
+        
         // Generate New Customer after earlier customer enter the queue
         customer = generateCustomer()
         customer.user = indexCustomer
@@ -182,6 +183,7 @@ for (let i = 0; i < finishedCustomer.length; i++) {
 }
 
 console.log('Last Queue Simulation = ', sim.queue);
+console.log('Still in server = ', sim.service)
 console.log('Finished Customer = ', finishedCustomer);
 console.log('Average Waiting Time = ', (totalWaiting / finishedCustomer.length).toFixed(3))
 
