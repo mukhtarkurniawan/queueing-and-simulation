@@ -37,7 +37,7 @@ for (let i = 0; i < 3; i++) {
 }
 
 // Iteration is based on time
-let simTime = 2000
+let simTime = 200
 let iter = 0
 let nextArrival = 0
 let indexCustomer = 0
@@ -46,7 +46,7 @@ let customer = generateCustomer()
 while (iter < simTime) {
 
     // Put customers to queue
-    if (customer.arriveTime == nextArrival) {
+    if (customer.nextArrival == nextArrival) {
         // Initialize min Queue Length
         let minQueue = {
             length: 1000,
@@ -64,6 +64,7 @@ while (iter < simTime) {
             }
         }
 
+        customer.arriveAt = iter
         sim.queue[minQueue.index].push(customer)
         indexCustomer = customer.user + 1
 
@@ -74,7 +75,6 @@ while (iter < simTime) {
     }
 
     // Check Queue and Service
-
     // If amount of queue and server are same 
     // then queue and server are going to be parallel
     if (sim.queue.length == sim.service.length) {
@@ -203,7 +203,8 @@ function generateCustomer() {
 
     let customer = {
         user: 0,
-        arriveTime: randArrive,
+        nextArrival: randArrive,
+        arriveAt: 0,
         waitingTime: 0,
         respondTime: 0,
         finishedAt: 0,
